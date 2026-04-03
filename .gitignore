@@ -1,0 +1,13 @@
+# Ignore the massive dataset
+data/
+
+# Ignore the virtual environment
+tf_env/
+
+# Ignore Django database and cache files
+db.sqlite3
+__pycache__/
+*.pyc
+
+# Ignore user uploads 
+media/

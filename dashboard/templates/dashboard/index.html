@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fundus AI Diagnosis</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f9;">
+
+    <h1>Fundus Disease Diagnostic AI</h1>
+    <p>Upload a retinal image to generate a Grad-CAM heatmap and classification.</p>
+
+    <form method="POST" enctype="multipart/form-data" style="margin-top: 30px;">
+        {% csrf_token %}
+        <input type="file" name="eye_image" accept="image/*" required style="padding: 10px;">
+        <br><br>
+        <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
+            Analyze Image
+        </button>
+    </form>
+
+    <hr style="margin-top: 40px; border: 1px solid #ccc;">
+
+    {% if diagnosis %}
+        <div style="margin-top: 30px; padding: 20px; border: 2px solid #007BFF; border-radius: 10px; background-color: #e9f5ff; display: inline-block; text-align: center;">
+            
+            <h2 style="color: #007BFF; margin-bottom: 5px;">Diagnosis: {{ diagnosis }}</h2>
+            <h3 style="color: #333; margin-top: 0;">AI Confidence: {{ confidence }}</h3>
+            
+            <div style="display: flex; justify-content: center; gap: 50px; margin-top: 30px;">
+                
+                <div>
+                    <h4 style="margin-bottom: 10px;">Raw Upload</h4>
+                    <img src="{{ raw_image_url }}" alt="Raw Image" style="width: 250px; height: 250px; border-radius: 8px; border: 1px solid #999; object-fit: cover;">
+                </div>
+
+                <div>
+                    <h4 style="margin-bottom: 10px;">Explainable AI (Grad-CAM)</h4>
+                    <img src="{{ heatmap_url }}" alt="Heatmap" style="width: 250px; height: 250px; border-radius: 8px; border: 1px solid #999; object-fit: cover;">
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+</body>
+</html>
