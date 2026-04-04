@@ -13,10 +13,17 @@ An end-to-end Deep Learning system that diagnoses Diabetic Retinopathy from reti
 * **Backend Web Server:** Django
 * **Optimization:** Custom GWO Algorithm
 
-## 📊 Model Performance
-* Achieved **71.08% Validation Accuracy** across 5 complex clinical classes (Healthy, Mild, Moderate, Severe, Proliferative).
-* GWO Optimized Parameters: Learning Rate `0.00080`, Dropout Rate `0.31`.
-* System successfully balances diagnostic confidence with clinical caution, effectively identifying severe lesions while flagging visual artifacts via Grad-CAM.
+## 📊 Model Performance & Evaluation
+The model was evaluated against 14,227 validation images, yielding the following mathematical metrics:
+* **Overall Accuracy:** 71.1%
+* **Weighted F1-Score:** 0.70
+* **Healthy Identification (Recall):** 93% (Highly effective at minimizing false positives for healthy patients)
+* **Proliferative DR (Precision):** 73% (Strong reliability when flagging the most severe, dangerous stage of the disease)
+
+**Confusion Matrix Results:**
+The system effectively distinguishes baseline healthy eyes from severe pathology. Borderline cases (e.g., distinguishing Healthy vs. Mild DR) show expected clinical variance, which is explicitly mitigated in this system through the human-in-the-loop **Grad-CAM** visual verification.
+
+![Confusion Matrix](confusion_matrix.png)
 
 ## 💻 How to Run Locally
 1. Clone the repository:
